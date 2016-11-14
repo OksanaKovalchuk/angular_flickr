@@ -21,7 +21,6 @@ angular.module('main', ['ngRoute'])
          }, function errorCallback(response) {
              console.log(response);
          });
-
      };
      $scope.search();
  }];

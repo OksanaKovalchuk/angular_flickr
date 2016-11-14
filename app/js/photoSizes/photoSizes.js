@@ -27,11 +27,11 @@ function PhotoSizeController($scope, $http, $location, $routeParams) {
     }, function errorCallback(response) {
         console.error(response);
     });
-    $scope.getImageBySize = function(size, photo){
+    $scope.getImageBySize = function(size, photo, index){
         function getSize(photo) {
             return photo.substr(photo.length-5,1) ;
         }
         var s = getSize(photo);
-        $location.path("/photo/"+$scope.id+"/size/"+s);
+        $location.path("/photo/"+$scope.id+"/size/"+s+"/"+index);
     };
 }

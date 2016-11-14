@@ -3,9 +3,11 @@
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"  ng-repeat="photo in photoArray">
             <div class="thumbnail">
             <span  class="small thumnail">
-                <img ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_m.jpg"
-                     class="thumbnail" alt="" >
-               <a ng-href="/photo/{{photo.id}}"> <h3>{{photo.title}}</h3></a>
+               <a ng-href="/photo/{{photo.id}}" title="Click to see all available size for this photo">
+                   <img ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_m.jpg"
+                        class="thumbnail" alt="" >
+                   <h3>{{photo.title}}</h3>
+                   </a>
             </span>
             </div>
         </div>
