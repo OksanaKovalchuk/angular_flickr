@@ -10,7 +10,9 @@ angular.module('photo', ['ngRoute'])
     }]);
 
 function photoCtrl($scope,$http, $routeParams) {
-
+    /**
+     * resolving promise ro get info from the Rest Api due to choosed photo and size
+     */
     $http({
         method:"GET",
         url:"http://localhost:8000/photo/"+$routeParams.id+"/size/"+$routeParams.label+"/"+$routeParams.index

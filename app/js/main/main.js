@@ -10,6 +10,9 @@ angular.module('main', ['ngRoute'])
     }]);
  var MainCtrl = ['$scope', '$http', function($scope, $http) {
      $scope.results = [];
+     /**
+      * function for getting info for main page
+      */
      $scope.search= function(){
          $scope.issearching = true;
          $http({
@@ -22,5 +25,8 @@ angular.module('main', ['ngRoute'])
              console.log(response);
          });
      };
+     /**
+      * calling initializing function
+      */
      $scope.search();
  }];
