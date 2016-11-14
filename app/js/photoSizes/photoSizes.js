@@ -11,35 +11,27 @@ angular.module('photoSize', ['ngRoute'])
 
 function PhotoSizeController($scope, $http, $location, $routeParams) {
 
-    console.log($location);
     $scope.id = $routeParams.id;
-    $scope.getSizeOfImage = function(id){
-        $http({
-            method:"GET",
-            url: "https://api.flickr.com/services/rest",
-            params:{
-                method:"flickr.photos.getSizes",
-                api_key:"cd51c35deb0b194c8c3ccbf6e18954c5",
-                photo_id: id,
-                text: $scope.searchText,
-                format: "json",
-                nojsoncallback:1
-            }
-        }).success(function (data) {
-            $scope.sizes = data.sizes;
-            $scope.sourceImage = $scope.sizes.size[1].source;
-            console.log(data);
-        })
-    };
-    $scope.getSizeOfImage($scope.id);
-    $scope.send = function(url){
-      // $routeParams.source = url;
-        console.log($routeParams);
-    };
+    $http({
+        method:"GET",
+        url:"http://localhost:8000/photo/"+$scope.id
+    }).then(function successCallback(response) {
+        $scope.mid=JSON.parse(response.data.sizes);
+        $scope.sizes = $scope.mid.sizes;
+        $scope.sourceImage = $scope.mid.sizes.size[0].source;
+        $scope.sourceImage =setCharAt($scope.sourceImage, $scope.sourceImage.length-5, 'm') ;
+        function setCharAt(str,index,chr) {
+            if(index > str.length-1) return str;
+            return str.substr(0,index) + chr + str.substr(index+1);
+        }
+    }, function errorCallback(response) {
+        console.error(response);
+    });
     $scope.getImageBySize = function(size, photo){
-        console.log(size);
-        console.log(photo);
-        $location.path("/photo/"+$scope.id+"/size/"+size.height+"x"+size.width+"/"+size.label[0]);
-
+        function getSize(photo) {
+            return photo.substr(photo.length-5,1) ;
+        }
+        var s = getSize(photo);
+        $location.path("/photo/"+$scope.id+"/size/"+s);
     };
 }

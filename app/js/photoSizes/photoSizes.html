@@ -1,11 +1,12 @@
-<a ng-href="">there would be photo with c size and listing available sizes</a>
 
-
-<div ng-if="sourceImage">
-    <img ng-src="{{sourceImage}}" alt="the picture hasn't been  found">
-</div>
-<div ng-if="sizes">
-            <span ng-repeat="size in sizes.size" ng-click="getImageBySize(size, sourceImage)">
-                <a >{{size.width}}x{{size.height}}</a>
-            </span>
+{{id}}
+<div class="container thumbnail">
+    <div ng-if="sourceImage">
+        <img ng-src="{{sourceImage}}" alt="the picture hasn't been  found">
+    </div>
+    <div ng-if="sizes">
+    <span ng-repeat="size in sizes.size" ng-click="getImageBySize(size, sourceImage)">
+        <a >{{size.width}}x{{size.height}}</a>
+    </span>
+    </div>
 </div>
